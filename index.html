@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drawing App</title>
+    <!--favicon-->
+    <link
+      rel="shorcut icon"
+      type="image/png"
+      href="./img/favicon_io/LogoMakr.png"
+    />
+    <!--jQuery UI if needed-->
+
+    <!--Fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/52339f9582.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--Style sheet-->
+    <link rel="stylesheet" href="./css/styling.css" />
+  </head>
+  <body>
+    <!--TITLE-->
+    <h1 id="header">Drawing App</h1>
+    <!--Input setting-->
+    <div class="inputContainer">
+      <!--Color-->
+      <div id="colorInput" class="input">
+        <input type="color" list id="paintColor" />
+      </div>
+      <!--Size-->
+      <div id="thicknessInput" class="input">
+        <div id="circle"></div>
+      </div>
+      <div class="input">
+        <div id="slider"></div>
+      </div>
+    </div>
+    <!--CANVAS-->
+    <div class="container"></div>
+    <!--Buttons-->
+    <div class="inputContainer2">
+      <!--erase-->
+      <div class="input2">
+        <span id="erase" class="button">Erase</span>
+      </div>
+      <!--save-->
+      <div class="input2">
+        <span id="erase" class="button">Save</span>
+      </div>
+      <!--reset-->
+      <div class="input2">
+        <span id="erase" class="button">Reset</span>
+      </div>
+    </div>
+
+    <!--JQUERY library CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--jQuery UI-->
+    <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!--Jquery file-->
+    <script src="./js/jquery.js"></script>
+  </body>
+</html>

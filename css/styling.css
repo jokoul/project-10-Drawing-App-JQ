@@ -1,0 +1,110 @@
+/*GENERAL STYLE*/
+body {
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../img/colorful-doodle-g6d15d15f2_1920.jpg") center center fixed;
+  background-size: cover;
+}
+/*title*/
+#header {
+  background: linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -webkit-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -moz-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -o-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  height: 5.5rem;
+  width: 80%;
+  margin: 2rem auto;
+  font-size: 3rem;
+  color: white;
+  line-height: 5rem;
+}
+
+/*SETTING*/
+.inputContainer {
+  width: 40%;
+  margin: 0 auto;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.9)
+  );
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+}
+.input {
+  height: 2.5rem;
+  font-size: 1.3em; /*make the handle bigger*/
+  margin: 0rem auto;
+}
+#thicknessInput {
+  margin-bottom: 1rem;
+  position: relative;
+}
+#circle {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black;
+  margin: 0 auto;
+  position: absolute; /*to center the circle*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /*shift positioning to the circle center*/
+  -webkit-transform: translate(
+    -50%,
+    -50%
+  ); /*vendor prefix for cross browser compatibility*/
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+#slider .ui-slider-handle {
+  background: rgba(0, 137, 161);
+}
+#slider {
+  border: 2px solid rgba(0, 137, 161);
+}
+
+/*CANVAS*/
+.container {
+  width: 500px;
+  height: 400px;
+  border: 2px solid rgba(255, 165, 0, 0.8);
+  margin: 0.5rem auto;
+  background-color: white;
+}
+
+/*Buttons*/
+.inputContainer2 {
+  width: 50%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.input2 {
+  width: 8rem;
+  color: #ffa939;
+  font-size: 1.3em;
+  margin-top: 0.5rem;
+}
+.button {
+  background: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0px 4px rgb(216, 55, 245, 0.7);
+  -webkit-box-shadow: 0px 4px rgb(216, 55, 245, 0.7);
+  -moz-box-shadow: 0px 4px rgb(216, 55, 245, 0.7);
+  -o-box-shadow: 0px 4px rgb(216, 55, 245, 0.7);
+  position: relative;
+}
+.button:hover {
+  color: white;
+  background: linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -webkit-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -moz-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+  background: -o-linear-gradient(orange, rgba(216, 55, 245, 0.7));
+}
+.button:active {
+  top: 5px;
+}
