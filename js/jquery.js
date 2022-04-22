@@ -35,6 +35,7 @@ $(function () {
   var container = $("#container");
   //mouse position
   var mouse = { x: 0, y: 0 }; //initial coordinate
+  var clientX, clientY;
   //onload load saved work from localstorage
   function showDraw() {
     if (localStorage.getItem("imgCanvas") != null) {
@@ -76,8 +77,10 @@ $(function () {
     }
   });
   $("#circle").css("background-color", $("#paintColor").val());
+  $("#circle").css("width", "5px");
+  $("#circle").css("height", "5px");
   //click inside container
-  container.on("touchstart mousedown", function (e) {
+  container.on("mousedown", function (e) {
     paint = true;
     //declare new path
     ctx.beginPath();
@@ -86,10 +89,28 @@ $(function () {
     mouse.y = e.pageY - this.offsetTop;
     //position the context point
     ctx.moveTo(mouse.x, mouse.y); //coordinate set dynamically with mouse position variable.
-    e.preventDefault();
   });
+  canvas.addEventListener(
+    "touchstart",
+    function (e) {
+      paint = true;
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+      //declare new path
+      ctx.beginPath();
+      //get current mouse position
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+      //   mouse.x = e.pageX - this.offsetLeft; //e.pageX give distance between mouse and left border of browser page, this.offsetLeft give distance between container and left border of the page.
+      //   mouse.y = e.pageY - this.offsetTop;
+      //position the context point
+      ctx.moveTo(clientX, clientY); //coordinate set dynamically with mouse position variable.
+    },
+    false
+  );
   //move the mouse while holding mouse key
-  container.on("touchmove mousemove", function (e) {
+  container.on("mousemove", function (e) {
     //get current mouse position
     mouse.x = e.pageX - this.offsetLeft;
     mouse.y = e.pageY - this.offsetTop;
@@ -106,13 +127,48 @@ $(function () {
       //make line visible
       ctx.stroke();
     }
-    e.preventDefault();
   });
+  canvas.addEventListener(
+    "touchmove",
+    function (e) {
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+      //get current mouse position
+      clientX = e.touches[0].pageX;
+      clientY = e.touches[0].pageY;
+      if (paint == true) {
+        if (paint_erase == "paint") {
+          //set color input
+          ctx.strokeStyle = $("#paintColor").val();
+        } else {
+          //set white line color to erase
+          ctx.strokeStyle = "white";
+        }
+        //draw a straight line
+        ctx.lineTo(clientX, clientY);
+        //make line visible
+        ctx.stroke();
+      }
+    },
+    false
+  );
   //mouse up -> we are not paintingErasing anymore
-  container.on("touchend mouseup", function (e) {
+  container.on("mouseup", function (e) {
     paint = false;
-    e.preventDefault();
   });
+  canvas.addEventListener(
+    "touchend",
+    function (e) {
+      paint = false;
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+      var deltaX = e.changedTouches[0].clientX - clientX;
+      var deltaY = e.changedTouches[0].clientY - clientY;
+    },
+    false
+  );
   //if we leave the container we are not paintingErasing anymore
   container.on("mouseleave", function () {
     paint = false;
@@ -123,8 +179,12 @@ $(function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height); //canvas coordinate of the top/left corner point and the bottom/right point.
     paint_erase = "paint";
     $("#erase").removeClass("eraseMode");
-    if (localStorage.getItem("imgCanvas") != null) {
+    if (
+      localStorage.getItem("imgCanvas") != null &&
+      localStorage.getItem("colorCircle") != null
+    ) {
       localStorage.removeItem("imgCanvas");
+      localStorage.removeItem("colorCircle");
     }
   });
   //click on the save button
